@@ -22,10 +22,13 @@ public class RoomSelectionMenu : MonoBehaviour
 
     private Coroutine refreshRoutine;
 
-    private float refreshTimer = 1.0f;
+    private float refreshTimer = 60.0f;
 
     [SerializeField]
     private InputField roomCreationNameInputField = null;
+    
+    [SerializeField]
+    private InputField roomCreationPasswordInputField = null;
 
     [SerializeField]
     private InputField roomPasswordInputField = null;
@@ -35,6 +38,11 @@ public class RoomSelectionMenu : MonoBehaviour
         get { return roomCreationNameInputField.text; }
     }
 
+    public string RoomCreationPassword
+    {
+        get { return roomCreationPasswordInputField.text; }
+    }
+    
     private void Awake()
     {
         createRoomButton.interactable = false;
@@ -83,8 +91,8 @@ public class RoomSelectionMenu : MonoBehaviour
         }
     }
 
-    public void JoinRoom(string roomID)
+    public void JoinRoom(string roomID, string password)
     {
-        lobbyController.JoinRoom(roomID);
+        lobbyController.JoinRoom(roomID, password);
     }
 }

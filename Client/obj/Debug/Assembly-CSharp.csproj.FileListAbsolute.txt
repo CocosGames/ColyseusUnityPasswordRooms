@@ -1,0 +1,1 @@
+C:\Users\suppo\Project\unity\test_colyseus\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache

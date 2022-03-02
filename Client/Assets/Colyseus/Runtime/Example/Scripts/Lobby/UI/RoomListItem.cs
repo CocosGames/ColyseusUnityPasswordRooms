@@ -15,6 +15,10 @@ public class RoomListItem : MonoBehaviour
     [SerializeField]
     private Text roomName = null;
 
+    [SerializeField]
+    private InputField roomPassword = null;
+
+
     private ColyseusRoomAvailable roomRef;
 
     public void Initialize(ColyseusRoomAvailable roomReference, RoomSelectionMenu menu)
@@ -22,6 +26,7 @@ public class RoomListItem : MonoBehaviour
         menuRef = menu;
         roomRef = roomReference;
         roomName.text = roomReference.roomId;
+        // roomPassword.enabled = roomReference.hasPassword;
         string maxClients = roomReference.maxClients > 0 ? roomReference.maxClients.ToString() : "--";
         clientCount.text = $"{roomReference.clients} / {maxClients}";
         //TODO: if we want to lock rooms, will need to do so here
@@ -37,6 +42,6 @@ public class RoomListItem : MonoBehaviour
 
     public void TryJoin()
     {
-        menuRef.JoinRoom(roomRef.roomId);
+        menuRef.JoinRoom(roomRef.roomId, roomPassword.text);
     }
 }

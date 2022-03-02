@@ -80,9 +80,11 @@ public class LobbyController : MonoBehaviour
     {
         connectingCover.SetActive(true);
         string desiredRoomName = selectRoomMenu.RoomCreationName;
+        string desiredRoomPassword = selectRoomMenu.RoomCreationPassword;
         if (!string.IsNullOrEmpty(desiredRoomName))
         {
-            LoadGallery(() => { ExampleManager.Instance.CreateNewRoom(desiredRoomName); });
+            Dictionary<string, object> options = new Dictionary<string, object>() { {"password",desiredRoomPassword} };
+            LoadGallery(() => ExampleManager.Instance.CreateNewRoom(desiredRoomName, options));
         }
     }
 
@@ -93,10 +95,11 @@ public class LobbyController : MonoBehaviour
         ExampleManager.Instance.JoinOrCreateRoom();
     }
 
-    public void JoinRoom(string id)
+    public void JoinRoom(string id, string password)
     {
         connectingCover.SetActive(true);
-        LoadGallery(() => { ExampleManager.Instance.JoinExistingRoom(id); });
+        Dictionary<string, object> options = new Dictionary<string, object>() { {"password", password} };
+        LoadGallery(() => { ExampleManager.Instance.JoinExistingRoom(id, options); });
     }
 
     public void OnConnectedToServer()

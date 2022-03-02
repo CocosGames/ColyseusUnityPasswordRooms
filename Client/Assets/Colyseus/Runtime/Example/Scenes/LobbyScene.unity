@@ -2177,6 +2177,7 @@ MonoBehaviour:
   loadingCover: {fileID: 832334714}
   lobbyController: {fileID: 966587618}
   roomCreationNameInputField: {fileID: 169478914}
+  roomCreationPasswordInputField: {fileID: 548651454}
   roomPasswordInputField: {fileID: 548651454}
 --- !u!1 &762000585
 GameObject:

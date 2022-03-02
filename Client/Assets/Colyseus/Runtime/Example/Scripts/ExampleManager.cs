@@ -137,9 +137,9 @@ public class ExampleManager : ColyseusManager<ExampleManager>
         onRoomsReceived?.Invoke(rooms);
     }
 
-    public async void JoinExistingRoom(string roomID)
+    public async void JoinExistingRoom(string roomID, Dictionary<string,object> options)
     {
-        await _roomController.JoinRoomId(roomID);
+        await _roomController.JoinRoomId(roomID, options);
     }
 
     public async void CreateNewRoom(string roomID)

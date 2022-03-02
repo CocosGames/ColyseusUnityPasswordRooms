@@ -315,7 +315,6 @@ public class ExampleRoomController
             {
                 options.Add(option.Key, option.Value);
             }
-            options.Add("password", "wrong");
 
             _room = await _client.JoinOrCreate<ExampleRoomState>(roomName, options);
         }
@@ -420,7 +419,7 @@ public class ExampleRoomController
 
         if (parsedCode != WebSocketCloseCode.Normal && !string.IsNullOrEmpty(_lastRoomId))
         {
-            JoinRoomId(_lastRoomId);
+            JoinRoomId(_lastRoomId,null);
         }
     }
 
@@ -471,7 +470,7 @@ public class ExampleRoomController
     ///     Join a room with the given <see cref="roomId" />.
     /// </summary>
     /// <param name="roomId">ID of the room to join.</param>
-    public async Task JoinRoomId(string roomId, Action<bool> onJoin = null)
+    public async Task JoinRoomId(string roomId, Dictionary<string,object> options, Action<bool> onJoin = null)
     {
         LSLog.Log($"Joining Room ID {roomId}....");
         ClearRoomHandlers();
@@ -480,7 +479,7 @@ public class ExampleRoomController
         {
             while (_room == null || !_room.colyseusConnection.IsOpen)
             {
-                _room = await _client.JoinById<ExampleRoomState>(roomId, null);
+                _room = await _client.JoinById<ExampleRoomState>(roomId, options);
 
                 if (_room == null || !_room.colyseusConnection.IsOpen)
                 {

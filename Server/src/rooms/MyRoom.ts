@@ -162,6 +162,7 @@ export class MyRoom extends Room<ExampleRoomState> {
         });
 
         this.setSimulationInterval((dt) => this.onGameLoop(dt));
+        this.autoDispose = false;
     }
 
     // Callback when a client has joined the room
@@ -181,12 +182,13 @@ export class MyRoom extends Room<ExampleRoomState> {
         /**
          * You can immediatelly return a `boolean` value.
          */
-        if (options.password === "secret") {
+        if (this.roomOptions.password == null || this.roomOptions.password == "" || options.password == this.roomOptions.password) {
             return true;
 
         } else {
             throw new ServerError(400, "bad access token");
         }
+        return false;
     }
 
 

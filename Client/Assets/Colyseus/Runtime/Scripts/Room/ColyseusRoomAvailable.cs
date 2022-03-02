@@ -28,6 +28,11 @@ namespace Colyseus
         public string name;
 
         /// <summary>
+        ///     Room password
+        /// </summary>
+        public bool hasPassword;
+
+        /// <summary>
         ///     Process ID used for connection
         /// </summary>
         public string processId;
